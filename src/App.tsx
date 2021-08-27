@@ -2,45 +2,26 @@ import babyNames from "./babyNamesData.json";
 import { Name } from "./components/Name";
 import { FavouriteName } from "./components/FavouriteName";
 import { useState } from "react";
+import { fitlerNames } from "./utils/filterNames";
 
 function App(): JSX.Element {
   const [text, setText] = useState("");
   const [favourites, setFavourites] = useState<string[]>([]);
   const [gender, setGender] = useState("none");
 
-  function fitlerNames(
-    gender: string,
-    element: { id: number; name: string; sex: string }
-  ) {
-    if (gender !== "none") {
-      return (
-        element.name.toLowerCase().includes(text.toLowerCase()) &&
-        element.sex === gender[0] &&
-        !favourites.includes(element.name)
-      );
-    } else {
-      return (
-        element.name.toLowerCase().includes(text.toLowerCase()) &&
-        !favourites.includes(element.name)
-      );
-    }
-  }
-
-  function getnames(gender: string) {
-    return babyNames
-      .filter((element) => fitlerNames(gender, element))
-      .sort((a, b) => ("" + a.name).localeCompare(b.name))
-      .map((element) => (
-        <Name
-          key={element.id}
-          id={element.id}
-          name={element.name}
-          gender={element.sex}
-          setFavourites={(names: string[]) => setFavourites(names)}
-          favourites={favourites}
-        />
-      ));
-  }
+  const names = babyNames
+    .filter((element) => fitlerNames(gender, text, favourites, element))
+    .sort((a, b) => ("" + a.name).localeCompare(b.name))
+    .map((element) => (
+      <Name
+        key={element.id}
+        id={element.id}
+        name={element.name}
+        gender={element.sex}
+        setFavourites={(names: string[]) => setFavourites(names)}
+        favourites={favourites}
+      />
+    ));
 
   const favs = babyNames
     .filter((element) => favourites.includes(element.name))
@@ -88,7 +69,7 @@ function App(): JSX.Element {
         <hr></hr>
       </header>
 
-      <main>{getnames(gender)}</main>
+      <main>{names}</main>
 
       <footer>
         <hr></hr>
