@@ -1,0 +1,103 @@
+
+hr {
+    border-color: rgba(255, 255, 255, 0.993);
+}
+
+body{
+    padding: 5rem;
+}
+
+#root {
+    /* width: 400px; */
+    border: 3px solid transparent;
+    border-image-slice: 1;
+    padding: 25px;
+    border-image-source: linear-gradient(to left, #a0cfee, #ffc6e5);
+}
+
+.slick {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap:7px;
+}
+
+.sick {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.sick h3 {
+    color: #aaaaaa;
+}
+
+.sick button {
+    padding: 2px;
+    border-radius: 3px;
+    margin: 2px;
+    height: 23px;
+    border: none;
+}
+
+#female {
+    background-color: #ffc6e5;
+    border: none;
+    border-radius: 3px;
+
+}
+
+#male {
+    background-color: #a0cfee;
+    border-radius: 3px;
+    border: none;
+}
+
+#all {
+    background-color: gray;
+    border-radius: 3px;
+    border: none;
+}
+
+#all:focus, #all:focus {
+    border-bottom: 0.2em solid #2e2e2e;
+}
+
+#male:focus, #male:focus {
+    border-bottom: 0.2em solid #2e2e2e;
+}
+
+#female:focus, #female:focus {
+    border-bottom: 0.2em solid #2e2e2e;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 3rem;
+    padding-bottom: 5rem;
+}
+
+main button {
+    padding: 2px;
+    border-radius: 3px;
+    margin: 2px;
+    border: none;
+}
+
+
+.female {
+    background-color: #ffc6e5;
+    color: #980855;
+}
+
+.male {
+    background-color: #a0cfee;
+    color: #417a9f;
+}
+
+
