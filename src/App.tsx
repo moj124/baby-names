@@ -8,45 +8,34 @@ function App(): JSX.Element {
   const [favourites, setFavourites] = useState<string[]>([]);
   const [gender, setGender] = useState("none");
 
-  function getnames(gender: string) {
-    if (gender !== "none") {
-      return babyNames
-        .filter(
-          (element) =>
-            element.name.toLowerCase().includes(text.toLowerCase()) &&
-            element.sex === gender[0] &&
-            !favourites.includes(element.name)
-        )
-        .sort((a, b) => ("" + a.name).localeCompare(b.name))
-        .map((element) => (
-          <Name
-            key={element.id}
-            id={element.id}
-            name={element.name}
-            gender={element.sex}
-            setFavourites={(names: string[]) => setFavourites(names)}
-            favourites={favourites}
-          />
-        ));
-    } else {
-      return babyNames
-        .filter(
-          (element) =>
-            element.name.toLowerCase().includes(text.toLowerCase()) &&
-            !favourites.includes(element.name)
-        )
-        .sort((a, b) => ("" + a.name).localeCompare(b.name))
-        .map((element) => (
-          <Name
-            key={element.id}
-            id={element.id}
-            name={element.name}
-            gender={element.sex}
-            setFavourites={(names: string[]) => setFavourites(names)}
-            favourites={favourites}
-          />
-        ));
+  function fitlerNames(gender: string, element : {id:number,name:string,sex:string}){
+    if (gender !== 'none'){
+      return element.name.toLowerCase().includes(text.toLowerCase()) &&
+              element.sex === gender[0] &&
+              !favourites.includes(element.name)
+    } else{
+      return element.name.toLowerCase().includes(text.toLowerCase()) &&
+      !favourites.includes(element.name)
     }
+  }
+
+  function getnames(gender: string) {
+      return babyNames
+        .filter(
+          (element) =>
+            fitlerNames(gender,element)
+        )
+        .sort((a, b) => ("" + a.name).localeCompare(b.name))
+        .map((element) => (
+          <Name
+            key={element.id}
+            id={element.id}
+            name={element.name}
+            gender={element.sex}
+            setFavourites={(names: string[]) => setFavourites(names)}
+            favourites={favourites}
+          />
+        ));
   }
 
   const favs = babyNames
